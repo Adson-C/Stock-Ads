@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">LayoutCustomer</string>
+
+    //////////////// form estoque /////////////////
+
+    <string name="produto">Produto</string>
+    <string name="produto_produto">Insira produto</string>
+    <string name="quanti">Estoque</string>
+    <string name="quanti_estoque">Qtd..</string>
+    <string name="preco">Preço</string>
+    <string name="preco_preco">R$ 00.00</string>
+    <string name="btn_salvar">Salvar</string>
+    <string name="txt_login">E-mail</string>
+    <string name="txt_Nome">Nome</string>
+    <string name="edt_mail">digite seu e-mail...</string>
+    <string name="edt_nome">digite seu nome...</string>
+    <string name="digite_sua_senha">Senha</string>
+    <string name="edtsenha">digite sua senha...</string>
+    <string name="criar_conta">Criar conta</string>
+    <string name="txtRecup">Recuperar conta</string>
+    <string name="menu_sair">Sair</string>
+    <string name="menu_sobre">Sobre</string>
+    <string name="btn_logar">Logar</string>
+    <string name="seja_bem_vindo">Seja Bem Vindo</string>
+    <string name="estoque_suporte">Estoque Suporte</string>
+
+
+</resources>
