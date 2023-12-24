@@ -2,7 +2,7 @@
 
 # Sobre o projeto
 
- App de Estoqur, com toda parte de Produto, Qauntidade, Preço, tudo gerenciado , oferecer seus produtos no App.
+ App de controle Estoque, com toda parte de Produto, Qauntidade, Preço, tudo gerenciado , oferecer seus produtos no App.
 
 # Tecnologias utilizadas
 ## Back end
