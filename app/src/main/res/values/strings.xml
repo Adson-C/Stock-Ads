@@ -23,6 +23,7 @@
     <string name="btn_logar">Logar</string>
     <string name="seja_bem_vindo">Seja Bem Vindo</string>
     <string name="estoque_suporte">Estoque Suporte</string>
+    <string name="txt_enviar">Recuperar Conta</string>
 
 
 </resources>

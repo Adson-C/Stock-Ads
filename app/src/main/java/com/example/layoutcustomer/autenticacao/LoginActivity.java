@@ -15,7 +15,7 @@ import com.example.layoutcustomer.activity.MainActivity;
 import com.example.layoutcustomer.helper.FirebaseHelper;
 
 public class LoginActivity extends AppCompatActivity {
-    private TextView textCriar;
+    private TextView textCriar, txt_recu_conta;
     private EditText edt_email, edt_senha;
 
     private ProgressBar progressBar;
@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
         iniciarComponent();
         configClique();
     }
+
 
     public void logar(View view){
         String email = edt_email.getText().toString().trim();
@@ -73,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
     private void configClique(){
 
         textCriar.setOnClickListener(view -> startActivity(new Intent(this, CriarContaActivity.class)));
+        txt_recu_conta.setOnClickListener(view -> startActivity(new Intent(this, RecuperaSenhaActivity.class)));
     }
 
     private void iniciarComponent(){
@@ -80,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
         edt_senha = findViewById(R.id.edtsenha);
 
         textCriar = findViewById(R.id.txtcriar_conta);
+        txt_recu_conta = findViewById(R.id.txt_recuperar);
 
         progressBar = findViewById(R.id.progressBar);
     }
