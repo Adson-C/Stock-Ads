@@ -44,13 +44,12 @@ public class RecuperaSenhaActivity extends AppCompatActivity {
         FirebaseHelper.getAuth().sendPasswordResetEmail(email).addOnCompleteListener(task -> {
             if (task.isSuccessful()){
                 Toast.makeText(this, "Email envido com Sucesso", Toast.LENGTH_LONG).show();
-                progressBar.setVisibility(View.GONE);
 
             }else {
                     String error = task.getException().getMessage();
                 Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
-                progressBar.setVisibility(View.GONE);
             }
+            progressBar.setVisibility(View.GONE);
         });
     }
 
