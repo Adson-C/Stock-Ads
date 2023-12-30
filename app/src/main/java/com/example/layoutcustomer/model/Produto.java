@@ -1,20 +1,35 @@
 package com.example.layoutcustomer.model;
 
+import com.example.layoutcustomer.helper.FirebaseHelper;
+import com.google.firebase.database.DatabaseReference;
+
 import java.io.Serializable;
 
 public class Produto implements Serializable {
 
 
-    private  int id;
+    private String id;
     private String nome;
     private int estoque;
     private double preco;
 
-    public int getId() {
+    public Produto(){
+        DatabaseReference reference = FirebaseHelper.getDatabaseReference();
+        this.setId(reference.push().getKey());
+    }
+
+    public void salvarProduto(){
+        DatabaseReference reference = FirebaseHelper.getDatabaseReference()
+                .child("produtos")
+                .child(FirebaseHelper.getIdFirebase())
+                .child(this.id);
+        reference.setValue(this);
+    }
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

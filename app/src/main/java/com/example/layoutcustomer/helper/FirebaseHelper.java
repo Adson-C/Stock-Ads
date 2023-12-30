@@ -9,9 +9,13 @@ public class FirebaseHelper {
     // Essa Class server para qualquer App que use Firebase
     // metodos para salvar arquivos
     private static FirebaseAuth auth;
+
+    public static String getIdFirebase(){
+        return getAuth().getUid();
+}
     private static DatabaseReference databaseReference;
 
-    private static DatabaseReference getDatabaseReference(){
+    public static DatabaseReference getDatabaseReference(){
         if (databaseReference == null){
             databaseReference = FirebaseDatabase.getInstance().getReference();
         }

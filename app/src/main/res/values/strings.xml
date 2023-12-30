@@ -24,6 +24,7 @@
     <string name="seja_bem_vindo">Seja Bem Vindo</string>
     <string name="estoque_suporte">Estoque Suporte</string>
     <string name="txt_enviar">Recuperar Conta</string>
+    <string name="carregando_produtos">Carregando produtos...</string>
 
 
 </resources>

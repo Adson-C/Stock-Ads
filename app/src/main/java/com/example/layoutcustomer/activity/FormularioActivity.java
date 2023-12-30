@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.layoutcustomer.model.Produto;
-import com.example.layoutcustomer.ProdutoDAO;
 import com.example.layoutcustomer.R;
 
 public class FormularioActivity extends AppCompatActivity {
@@ -18,14 +17,12 @@ public class FormularioActivity extends AppCompatActivity {
     ImageButton imgvoltar;
 
     private Produto produto;
-    ProdutoDAO produtoDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario);
 
-        produtoDAO = new ProdutoDAO(this);
 
         edtproduto = findViewById(R.id.edtproduto);
         edtquanti = findViewById(R.id.edtquanti);
@@ -80,12 +77,8 @@ public class FormularioActivity extends AppCompatActivity {
                             produto.setEstoque(qtd);
                             produto.setPreco(valorProduto);
 
-                            if (produto.getId() != 0){
-                                produtoDAO.atualizarProdutos(produto);
-                            }else {
-                                produtoDAO.salvarProduto(produto);
+                            produto.salvarProduto();
 
-                            }
                             finish();
 
                         }else {
