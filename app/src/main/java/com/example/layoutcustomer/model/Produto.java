@@ -25,6 +25,15 @@ public class Produto implements Serializable {
                 .child(this.id);
         reference.setValue(this);
     }
+
+    public void deletarProduto(){
+        DatabaseReference reference = FirebaseHelper.getDatabaseReference()
+                .child("produtos")
+                .child(FirebaseHelper.getIdFirebase())
+                .child(this.id);
+        reference.removeValue();
+
+    }
     public String getId() {
         return id;
     }
