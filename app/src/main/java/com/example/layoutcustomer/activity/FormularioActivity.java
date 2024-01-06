@@ -1,11 +1,17 @@
 package com.example.layoutcustomer.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.ImageDecoder;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -17,11 +23,14 @@ import com.example.layoutcustomer.R;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.normal.TedPermission;
 
+import java.io.IOException;
 import java.util.List;
 
 public class FormularioActivity extends AppCompatActivity {
 
     private static final int REQUEST_GALERIA = 100;
+    private String caminhoImagem;
+    private Bitmap imgBitmap;
 
     EditText edtproduto, edtquanti, edtpreco;
     ImageButton imgvoltar;
@@ -122,11 +131,8 @@ public class FormularioActivity extends AppCompatActivity {
 
     }
 
-    public void carregarImagem(View view){
-        verificarPermissaoGaleria();
-    }
 
-    private void verificarPermissaoGaleria() {
+    public void verificarPermissaoGaleria(View view) {
         PermissionListener permissionListener = new PermissionListener() {
             @Override
             public void onPermissionGranted() {
@@ -156,5 +162,35 @@ public class FormularioActivity extends AppCompatActivity {
                 .setGotoSettingButtonText("SIM")
                 .setPermissions(permissoes)
                 .check();
+    }
+
+    // metodo resposavél para tratar o resultado
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK){
+            if (requestCode == REQUEST_GALERIA){
+
+                Uri localImagemSelecionada = data.getData();
+                caminhoImagem =localImagemSelecionada.toString();
+
+                if (Build.VERSION.SDK_INT < 28){
+                    try {
+                        imgBitmap = MediaStore.Images.Media.getBitmap(getBaseContext().getContentResolver(), localImagemSelecionada);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }else {
+                    ImageDecoder.Source source = ImageDecoder.createSource(getBaseContext().getContentResolver(), localImagemSelecionada);
+                    try {
+                        imgBitmap = ImageDecoder.decodeBitmap(source);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                Log.i("Informação", "onActivity" + caminhoImagem);
+            }
+        }
     }
 }
