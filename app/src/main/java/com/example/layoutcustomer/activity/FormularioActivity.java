@@ -18,8 +18,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.layoutcustomer.helper.FirebaseHelper;
 import com.example.layoutcustomer.model.Produto;
 import com.example.layoutcustomer.R;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.normal.TedPermission;
 
@@ -100,7 +103,14 @@ public class FormularioActivity extends AppCompatActivity {
                             produto.setEstoque(qtd);
                             produto.setPreco(valorProduto);
 
-                            produto.salvarProduto();
+                            // metodo para criar um produto com imagem
+                            if (caminhoImagem == null){
+                                Toast.makeText(this, "Selecione uma imagem.", Toast.LENGTH_SHORT).show();
+                            }else {
+                                salvarImgProduto();
+                            }
+
+//                            produto.salvarProduto();
 
                             finish();
 
@@ -128,6 +138,31 @@ public class FormularioActivity extends AppCompatActivity {
             edtproduto.requestFocus();
             edtproduto.setError("Informe o nome do produto.");
         }
+
+    }
+
+    // metodos para slavar as imagens
+    private void salvarImgProduto(){
+
+        StorageReference reference = FirebaseHelper.getStorageReference()
+                .child("imagens")
+                .child("produtos")
+                .child(FirebaseHelper.getIdFirebase())
+                .child(produto.getId() + ".jpeg");
+
+
+
+
+        // pegando a Uri da imagem
+        UploadTask uploadTask = reference.putFile(Uri.parse(caminhoImagem));
+        uploadTask.addOnSuccessListener(taskSnapshot -> reference.getDownloadUrl().addOnCompleteListener(task -> {
+
+            produto.setUrlImagem(task.getResult().toString());
+            produto.salvarProduto();
+
+            finish();
+
+        })).addOnFailureListener(e -> Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show());
 
     }
 
@@ -188,8 +223,7 @@ public class FormularioActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-
-                Log.i("Informação", "onActivity" + caminhoImagem);
+                    img_produto.setImageBitmap(imgBitmap);
             }
         }
     }
