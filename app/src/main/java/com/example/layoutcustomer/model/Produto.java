@@ -2,6 +2,7 @@ package com.example.layoutcustomer.model;
 
 import com.example.layoutcustomer.helper.FirebaseHelper;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.Serializable;
 
@@ -34,6 +35,12 @@ public class Produto implements Serializable {
                 .child(this.id);
         reference.removeValue();
 
+        StorageReference storageReference = FirebaseHelper.getStorageReference()
+                .child("imagens")
+                .child("produtos")
+                .child(FirebaseHelper.getIdFirebase())
+                .child(this.id + ".jpeg");
+        storageReference.delete();
     }
     public String getId() {
         return id;
