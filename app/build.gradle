@@ -49,5 +49,8 @@ dependencies {
     // https://github.com/ParkSangGwon/TedPermission
     implementation 'io.github.ParkSangGwon:tedpermission-normal:3.3.0'
 
+    // Picasso biblioteca
+    implementation 'com.squareup.picasso:picasso:2.8'
+
 
 }

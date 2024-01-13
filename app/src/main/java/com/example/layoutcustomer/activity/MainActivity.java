@@ -86,6 +86,8 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
                 for (DataSnapshot snap:
                      snapshot.getChildren()) {
                     Produto produto = snap.getValue(Produto.class);
+
+
                     produtoList.add(produto);
                 }
 
@@ -103,8 +105,6 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
 
     }
     
-    
-
     private void ouvinteClique(){
         imaAdd.setOnClickListener(view -> {
             startActivity(new Intent(this, FormularioActivity.class));

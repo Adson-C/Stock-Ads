@@ -25,6 +25,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.normal.TedPermission;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.List;
@@ -72,6 +73,8 @@ public class FormularioActivity extends AppCompatActivity {
         edtproduto.setText(produto.getNome());
         edtquanti.setText(String.valueOf(produto.getEstoque()));
         edtpreco.setText(String.valueOf(produto.getPreco()));
+
+        Picasso.get().load(produto.getUrlImagem()).into(img_produto);
     }
     private void voltariniciar(){
 
@@ -149,9 +152,6 @@ public class FormularioActivity extends AppCompatActivity {
                 .child("produtos")
                 .child(FirebaseHelper.getIdFirebase())
                 .child(produto.getId() + ".jpeg");
-
-
-
 
         // pegando a Uri da imagem
         UploadTask uploadTask = reference.putFile(Uri.parse(caminhoImagem));
